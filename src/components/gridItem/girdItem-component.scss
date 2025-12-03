@@ -1,0 +1,20 @@
+.grid-item {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+}
+
+.grid-item:hover {
+  transform: scale(1.03);
+  cursor: pointer;
+  /* z-index: 1; */
+}
+.no-hover {
+  pointer-events: none; /* Disable hover effects and pointer events */
+}
+.no-hover:hover {
+  transform: none; /* Remove hover scale effect */
+  cursor: default; /* Remove pointer cursor */
+}

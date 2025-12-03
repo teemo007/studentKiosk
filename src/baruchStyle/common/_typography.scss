@@ -1,0 +1,272 @@
+/**
+ * Typography
+ */
+
+$primaryFontFamily: 'futura-pt, sans-serif';
+
+@import url("https://fast.fonts.net/t/1.css?apiType=css&projectid=0833251b-5f7d-4630-b57e-00b213cd9d21");
+    @font-face{
+        font-family:"Helvetica Neue LT W05_55 Roman";
+        src:url("Fonts/08b57253-2e0d-4c12-9c57-107f6c67bc49.woff2") format("woff2"),url("Fonts/08edde9d-c27b-4731-a27f-d6cd9b01cd06.woff") format("woff");
+    }
+    @font-face{
+        font-family:"Helvetica Neue LT W05_75 Bold";
+        src:url("Fonts/800da3b0-675f-465f-892d-d76cecbdd5b1.woff2") format("woff2"),url("Fonts/7b415a05-784a-4a4c-8c94-67e9288312f5.woff") format("woff");
+    }
+    
+@font-face {
+  font-family: 'baruch_undergad';
+  //src: url("fonts/baruch_undergad.eot?86928227");
+  src: //url("fonts/baruch_undergad.eot?86928227#iefix") format("embedded-opentype"); 
+    //   url("fonts/baruch_undergad.woff2?86928227") format("woff2"), 
+    //   url("fonts/baruch_undergad.woff?86928227") format("woff"), 
+       url("fonts/baruch_undergad.ttf?86928227") format("truetype");
+    //   url("fonts/baruch_undergad.svg?86928227#baruch_undergad") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'baruch_social';
+  //src: url("fonts/fontello.eot?86928227");
+  src: //url("fonts/fontello.eot?86928227#iefix") format("embedded-opentype"); 
+    //   url("fonts/fontello.woff2?86928227") format("woff2"), 
+    //   url("fonts/fontello.woff?86928227") format("woff"), 
+       url("fonts/fontello.ttf?86928227") format("truetype");
+    //   url("fonts/fontello.svg?86928227#fontello") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'baruch_undergad';
+    src: url('../font/baruch_undergad.svg?86928227#baruch_undergad') format('svg');
+  }
+}
+*/
+/* line 23, ../scss/_fontello.scss */
+[class^="icon-"]:before, [class*=" icon-"]:before,
+[class^="icon-"]:after, [class*=" icon-"]:after {
+  font-family: "baruch_undergad";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+/* line 23, ../scss/_fontello.scss */
+[class^="bicon-"]:before, [class*=" bicon-"]:before,
+[class^="bicon-"]:after, [class*=" bicon-"]:after {
+  font-family: "baruch_social";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+body {
+     font-family: $primaryFontFamily;
+}
+
+p {
+    color: $primaryTextColor;
+    font-size: $pFontSize;
+    font-family: $pFontFamily2;
+    line-height: 1.6em;
+    margin-bottom: 1em;
+    margin-top: 0;
+}
+@media screen and (max-width: 700px) {
+    p {
+        //font-size: 13px;
+    }
+}
+
+h1 {
+    color: $headingColor;
+    font-size: $h1FontSize;
+    line-height: 1.4em;
+
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+@media screen and (max-width: 1024px) {
+    h1 {
+        font-size: 32px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    h1 {
+        font-size: 30px;
+    }
+}
+
+h2 {
+    color: $headingColor;
+    font-size: $h2FontSize;
+    line-height: 1.4em;
+    
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+
+@media screen and (max-width: 1024px) {
+    h2 {
+        font-size: 28px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    h2 {
+        font-size: 26px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    h2.max-width-80 {
+        max-width: 80%;
+    }
+}
+
+h3 {
+    color: $headingColor;
+    font-size: $h3FontSize;
+    line-height: 1.3em;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+
+}
+footer h3 {
+    color: #ffffff;
+}
+@media screen and (max-width: 1024px) {
+    h3 {
+        font-size: 24px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    h3 {
+        font-size: 22px;
+    }
+}
+
+h4 {
+    color: $headingColor;
+    font-size: $h4FontSize;
+    line-height: 1.2em;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+
+}
+
+@media screen and (max-width: 1024px) {
+    h4 {
+        font-size: 22px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    h4 {
+        font-size: 20px;
+    }
+}
+
+h5 {
+    color: $headingColor;
+    font-size: $h5FontSize;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+
+}
+
+@media screen and (max-width: 1024px) {
+    h5 {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    h5 {
+        font-size: 16px;
+    }
+}
+
+h6 {
+    color: $headingColor;
+    font-size: $h6FontSize;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+
+}
+
+@media screen and (max-width: 1024px) {
+    h6 {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    h6 {
+        font-size: 15px;
+    }
+}
+
+ul {
+  font-family: $pFontFamily2;
+}
+
+/*
+
+links
+copy link styling from styles here
+ */
+main p a, main li a {color: $accentColor; overflow-wrap: break-word;}
+main p a:hover, main li a:hover { color: darken($accentColor, 20%);}
+a {color: $accentColor;}
+a:hover {color: darken($accentColor, 20%);}
+main p a:hover, main li a:hover, main table a:hover{box-shadow:none;}
+footer a:hover {
+    color: $secondaryColor;
+}

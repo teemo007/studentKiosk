@@ -1,0 +1,219 @@
+/*
+! Baruch Styles
+This is the base scss style sheet
+ */
+
+/**
+ * Variables for Colors, Fonts etc..
+ *
+ */
+ $primaryColor: #085394;
+ $primaryColorDark: #033f73;
+ $secondaryColor: #f89828;
+ $thirdColor: #a3bced;
+ $primaryTextColor: #222222;
+ $headingColor: #225391;
+ $accentColor: #1176d9;
+ $linkColor: #1176d9;
+ $hoverColor: darken($accentColor, 20%);
+ $tableBorderColor: #333;
+ $navBackgroundColor: #d5e3f5;
+ $navLinkColor: #38548e;
+ $bodyBgColor: #08215C;
+ 
+ 
+ $pFontSize: 14px;
+ $h1FontSize: 32px;
+ $h2FontSize: 26px;
+ $h3FontSize: 22px;
+ $h4FontSize: 18px;
+ $h5FontSize: 16px;
+ $h6FontSize: 15px;
+ 
+ $fontWeight: 500;
+ $widgetNameSmall: 13px;
+ 
+ $primaryFontFamily: futura-pt, sans-serif;
+ $pFontFamily: Tahoma, Geneva, sans-serif;
+ $pFontFamily2: "Helvetica Neue",Helvetica,Arial,sans-serif;
+ $helvetica: "Helvetica Neue LT W05_55 Roman";
+ $helveticaBold: "Helvetica Neue LT W05_75 Bold";
+ // $oomphFont: source-sans-pro, sans-serif;
+ 
+ $siteWidth: 1080px;
+ 
+ 
+ $maxwidth-padding: 0 45px;
+//  $3-across-width: 100% / 2.2;
+ 
+ 
+ /**
+  * Sass Mixins
+  */
+ 
+ // Tracking to Letter-Spacing mixin
+ @mixin tracking( $tracking ){
+     letter-spacing: ( $tracking / 1000 ) * 1em; 
+ } 
+ 
+ @mixin oomphAll () {
+     .page-template-template-oomph-home-page,
+     .page-template-template-oomph-single-page,
+     .page-template-template-right-bar-oomph-page
+     {
+         @content;
+     }
+ }
+ @mixin oomphHome () {
+     .page-template-template-oomph-home-page
+     {
+         @content;
+     }
+ }
+ @mixin baruchHome () {
+     .page-template-template-Baruch-Home-php
+     {
+         @content;
+     }
+ }
+ @mixin oomphSingle () {
+     .page-template-template-oomph-single-page
+     {
+         @content;
+     }
+ }
+ @mixin oomphRightBar () {
+     .page-template-template-right-bar-oomph-page
+     {
+         @content;
+     }
+ }
+ 
+  @mixin transform($property) {
+   -webkit-transform: $property;
+       -ms-transform: $property;
+           transform: $property;
+ }
+  @mixin flex {
+     display: -webkit-box;
+     display: -ms-flexbox;
+     display: flex;
+ }
+ 
+ @mixin align-items($placement) {
+  -webkit-box-align: $placement;
+     -ms-flex-align: $placement;
+         align-items: $placement;
+ }
+ 
+ @mixin flex-wrap {
+  -ms-flex-wrap:  wrap;
+     flex-wrap:  wrap;
+ }
+ @mixin flex-column {
+  -webkit-box-orient:  vertical;
+     -webkit-box-direction:  normal;
+         -ms-flex-direction:  column;
+             flex-direction:  column;
+ }
+ @mixin flex-end {
+  -webkit-box-align: end;
+     -ms-flex-align: end;
+         align-items: flex-end;
+ }
+ @mixin justify {
+       -webkit-box-pack: justify;
+         -ms-flex-pack: justify;
+             justify-content: space-between;	
+ }
+ @mixin justify-items($placement) {
+  -webkit-box-pack: $placement;
+     -ms-flex-pack: $placement;
+         justify-content: $placement;
+ }
+ @mixin justify-end {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+         justify-content: flex-end;
+ }
+ @mixin full-width {
+     width: 100vw;
+     position: relative;
+     left: 50%;
+     right: 50%;
+     margin-left: -50vw;
+     margin-right: -50vw;
+ }
+ @mixin col-padding() {
+     *{
+     padding: 0 20px;
+     } 
+ }
+ 
+ 
+ @mixin bodyBackground{
+     background: #7693bb;
+     background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzc2OTNiYiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjM5JSIgc3RvcC1jb2xvcj0iIzllYjNkMCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9Ijk2JSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgPC9saW5lYXJHcmFkaWVudD4KICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2dyYWQtdWNnZy1nZW5lcmF0ZWQpIiAvPgo8L3N2Zz4=);
+     background: -moz-linear-gradient(top, #7693bb 0%, #9eb3d0 39%, #ffffff 96%);
+     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7693bb), color-stop(39%,#9eb3d0), color-stop(96%,#ffffff));
+     background: -webkit-linear-gradient(top, #7693bb 0%,#9eb3d0 39%,#ffffff 96%);
+     background: -o-linear-gradient(top, #7693bb 0%,#9eb3d0 39%,#ffffff 96%);
+     background: -ms-linear-gradient(top, #7693bb 0%,#9eb3d0 39%,#ffffff 96%);
+     background: linear-gradient(to bottom, #7693bb 0%,#9eb3d0 39%,#ffffff 96%);
+     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7693bb', endColorstr='#ffffff',GradientType=0 );
+     background-repeat: no-repeat;
+     background-attachment: fixed;
+ }
+ /**
+  * Screen Sizes
+  *
+  */
+ 
+ @mixin large () {
+     @media screen and (max-width: 1920px) {
+         @content;
+     }
+ }
+ @mixin medium () {
+     @media screen and (max-width: 1028px) {
+         @content;
+     }
+ }
+ @mixin small () {
+     @media screen and (max-width: 700px) {
+         @content;
+     }
+ }
+ 
+ @mixin xsmall () {
+     @media screen and (max-width: 600px) {
+         @content;
+     }
+ }
+ @mixin xxsmall () {
+     @media screen and (max-width: 500px) {
+         @content;
+     }
+ }
+ @mixin bigger-than-medium() {
+     @media screen and (min-width: 1029px) {
+         @content;
+     }
+ }
+ @mixin bigger-than-small() {
+     @media screen and (min-width: 701px) {
+         @content;
+     }
+ }
+ /** Import theme styles */
+ @import './common/typography';
+ @import './layouts/page';
+ @import './layouts/oomph-page';
+ @import './components/accordion';
+
+ 
+ 
+ 
+ 
+ 
+ 

@@ -1,0 +1,114 @@
+$m: 5rem;
+$p: 0.5rem;
+$min-w: 15rem;
+
+html {
+  --r: 16rem;
+  --i: -1;
+  --j: -1;
+}
+
+.title {
+  color: black;
+  font-family: "Lato", sans-serif;
+  font-size: 3.3rem;
+  font-weight: 500;
+  text-align: center;
+  z-index: 1;
+}
+.grid-item {
+  margin: $m;
+  min-width: $min-w;
+}
+
+.boxWrapper {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  padding: $p;
+  border-radius: 1.75rem;
+
+  // filter: url(#outline);
+  &:active {
+    transform: scale(0.98);
+    background-color: rgba(255, 255, 255, 0.15);
+    border: 0px solid rgba(255, 255, 255, 0.4);
+  }
+
+  &:before {
+    pointer-events: none;
+    color: rgba(255, 255, 255, 0.6);
+    position: absolute;
+    top: calc((1 + var(--j)) * 50% - var(--r) + var(--j) * #{$m});
+    left: calc((1 + var(--i)) * 50% - var(--r) + var(--i) *#{$m});
+    padding: var(--r);
+    border-radius: 50%;
+    box-shadow: 0 0 0 100em;
+    content: "";
+  }
+}
+
+@media (min-width: 2*($min-w + 2*$m)) {
+  .grid-item {
+    /* change vertical multiplier for first two (on 1st row of 2x2 grid) */
+    &:nth-of-type(-n + 2) {
+      --j: 1;
+    }
+    &:nth-of-type(1) {
+      // filter: drop-shadow(0 0 1px #333) drop-shadow(0 0 1px #333) drop-shadow(0 0 1px #333) drop-shadow(0 0 1px #333) drop-shadow(0 0 1px #333) drop-shadow(0 0 1px #333) drop-shadow(0 0 1px #333) drop-shadow(0 0 1px #333) drop-shadow(0 0 1px #333);
+    }
+    &:nth-of-type(2) {
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0px;
+        left: 15.5%;
+        width: 84.5%;
+        // border-bottom: 5px solid #0000cc;
+        // border-left: 5px solid #0000cc;
+      }
+    }
+    &:nth-of-type(3) {
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0px;
+        left: 0%;
+        width: 100%;
+        // border-bottom: 5px solid #0000cc;
+      }
+    }
+    &:nth-of-type(4) {
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0px;
+        left: 0%;
+        width: 100%;
+        // border-bottom: 5px solid #0000cc;
+      }
+    }
+
+    /* change horizontal multiplier for odd ones (on 1st column) */
+    &:nth-of-type(odd) {
+      --i: 1;
+    }
+  }
+}
+
+.grid-item:nth-of-type(odd) {
+  .boxWrapper .QrCode {
+    left: 20px;
+  }
+}
+
+.QrCode {
+  max-width: 10%;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
