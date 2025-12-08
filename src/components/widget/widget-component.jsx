@@ -19,18 +19,6 @@ const Widget = ({ content }) => {
     setCurrentTopic(content.id);
     // 2. reset flow (we will choose claim/reset from the center card)
     setCurrentFlow(null);
-
-    // try {
-    //   await addDoc(collection(db, "events"), {
-    //     action: "click_panel",
-    //     topicId: content.id,
-    //     topicTitle: content.title,
-    //     timestamp: serverTimestamp(),
-    //     kioskId: "NVC2F-KIOSK01",
-    //   });
-    // } catch (err) {
-    //   console.error("Firebase logging error:", err);
-    // }
   };
   return (
     <div

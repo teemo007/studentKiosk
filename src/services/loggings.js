@@ -1,4 +1,3 @@
-// src/services/loggings.js
 import { db } from "../utils/firebase/firebase.utils";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 

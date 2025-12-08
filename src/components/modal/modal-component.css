@@ -126,7 +126,6 @@
   gap: 14px;
 }
 
-/* 按钮基础样式 + hover 动画 */
 .exit-yes,
 .exit-no {
   padding: 10px 20px;
@@ -149,7 +148,7 @@
   color: #333;
 }
 
-/*  */
+
 .exit-yes:hover,
 .exit-no:hover {
   transform: translateY(-1px) scale(1.02);

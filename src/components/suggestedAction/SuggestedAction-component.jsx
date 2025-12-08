@@ -4,12 +4,20 @@ import "./suggestedAction.styles.scss";
 import { FLOW_CONFIG } from "../../config/flowConfig";
 import { logEvent } from "../../services/loggings";
 
+const createSessionId = () => {
+  if (window.crypto?.randomUUID) return window.crypto.randomUUID();
+  return `sess_${Date.now()}_${Math.random().toString(16).slice(2)}`;
+};
+
 const SuggestedAction = () => {
-  const { currentTopic, setIsOpen, setCurrentFlow } =
+  const { currentTopic, setIsOpen, setCurrentFlow, setCurrentSessionId } =
     useContext(DisplayContext);
 
   // General helper: This is used to open any sub-process of any topic in the modal.
   const openFlowModal = async (panelId, flowKey) => {
+    const sessionId = createSessionId();
+    setCurrentSessionId(sessionId); 
+
     setCurrentFlow(flowKey || null);
     setIsOpen((prev) => ({
       ...prev,
@@ -21,11 +29,11 @@ const SuggestedAction = () => {
         action: "flow_started",
         topicId: panelId,
         flowKey,
+        sessionId,
       });
     } catch (e) {
       console.error("logEvent(flow_started) error:", e);
     }
-
   };
 
   // Nothing selected yet

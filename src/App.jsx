@@ -24,7 +24,6 @@ const router = createBrowserRouter([
 
 const App = () => {
   return (
-    // <div><InactivityTimeout /><Display /></div>
     <RouterProvider router={router} />
   );
 };

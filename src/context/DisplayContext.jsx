@@ -7,12 +7,15 @@ export const DisplayContext = createContext({
   setCurrentTopic: () => {},
   currentFlow: null, // Generic flowKey, such as "claim" / "wifi-walkthrough-for-windows-users" / "print_library_pc"
   setCurrentFlow: () => {},
+  currentSessionId: null,
+  setCurrentSessionId: () => {},
 });
 
 export const DisplayProvider = ({ children }) => {
   const [isOpen, setIsOpen] = useState({});
   const [currentTopic, setCurrentTopic] = useState(null);
   const [currentFlow, setCurrentFlow] = useState(null);
+  const [currentSessionId, setCurrentSessionId] = useState(null);
 
   const value = {
     isOpen,
@@ -21,6 +24,8 @@ export const DisplayProvider = ({ children }) => {
     setCurrentTopic,
     currentFlow,
     setCurrentFlow,
+    currentSessionId,
+    setCurrentSessionId,
   };
 
   return (

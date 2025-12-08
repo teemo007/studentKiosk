@@ -1,202 +1,132 @@
-import iosStep1 from "../assets/images/printing/ios-step1-wifi.png";
-import iosStep2 from "../assets/images/printing/ios-step2-share.jpg";
-import iosStep3 from "../assets/images/printing/ios-step3-printer.png";
-import iosStep4 from "../assets/images/printing/ios-step4-release.jpg";
-import androidStep1 from "../assets/images/printing/android-step1-wifi.png";
-import androidStep2 from "../assets/images/printing/android-step2-wifi.png";
-import androidStep3 from "../assets/images/printing/android-step3-wifi.png";
-import androidStep4 from "../assets/images/printing/android-step4-wifi.png";
-import androidStep5 from "../assets/images/printing/android-step5-wifi.png";
-import androidStep6 from "../assets/images/printing/android-step6-wifi.png";
+export const printingSteps = {
+  ios: [
+    {
+      id: 1,
+      phase: "Connect to WiFi",
+      device: "phone",
+      image:
+        "https://bctc.baruch.cuny.edu/wp-content/uploads/sites/26/2021/04/ios_printing1.jpg",
+      title: "Join “Baruch” WiFi",
+      instruction:
+        "Make sure you are connected to the baruch wireless network via your device settings.",
+    },
+    {
+      id: 2,
+      phase: "Open your file",
+      device: "phone",
+      image:
+        "https://bctc.baruch.cuny.edu/wp-content/uploads/sites/26/2021/04/ios_printing2.jpg",
+      title: "Open the document or image",
+      instruction:
+        "You can now print with “Microsoft Excel” or any similar applications. Just open up the app and select “Print” from the menu after retrieving your document.",
+    },
+    {
+      id: 3,
+      phase: "Share",
+      device: "phone",
+      image:
+        "https://bctc.baruch.cuny.edu/wp-content/uploads/sites/26/2021/04/ios_printing3.jpg",
+      title: "Tap Share → AirPrint",
+      instruction:
+        "Select “AirPrint”. Make sure your “Layout Options” are correct with “PaperSize” set to “Letter” then select “Next” Select the right arrow to view and select the right printer for your job.",
+    },
+    {
+      id: 4,
+      phase: "Select printer",
+      device: "phone",
+      image:
+        "https://bctc.baruch.cuny.edu/wp-content/uploads/sites/26/2021/04/ios_printing4.jpg",
+      title: "Choose a Baruch printer",
+      instruction:
+        "Choose from baruchcolor or baruchbw. You can now return to “Printer Options” by selecting the left arrow.",
+    },
+    {
+      id: 5,
+      phase: "Release job",
+      device: "phone",
+      image:
+        "https://bctc.baruch.cuny.edu/wp-content/uploads/sites/26/2021/04/ios_printing5.jpg",
+      title: "Choose the campus printer",
+      instruction:
+        "Proceed with your printing job by selecting “Print” at the top right hand corner. Shortly after selecting “Print”, you should get a message at the top of your screen, indicating that your print job was successfully sent to the printer. You can then retrieve your print job at any available print release station on campus.",
+    },
+    {
+      id: 6,
+      phase: "Alternative Printing Options",
+      device: "phone",
+      image:
+        "https://bctc.baruch.cuny.edu/wp-content/uploads/sites/26/2021/04/ios_printing6.jpg",
+      title: "Alternative Printing Options",
+      instruction:
+        "If you want to print from a web browser, you do so by selecting “Share…” via the menu icon. You can then select the “Print” option. From there, follow steps 3–5 to complete your print job.",
+    },
+  ],
 
-export const printingSetUp = {
-  ios: `
-    <div class="printing-guide">
-      <h2>Wireless Printing – iPhone / iPad</h2>
-
-      <p class="printing-intro">
-        Follow the pictures to print from your phone.
-      </p>
-
-      <div class="printing-step-large">
-        <div class="printing-step-number">1</div>
-        <div class="printing-step-image-large">
-          <img
-            src="${iosStep1}"
-            alt="Connect to Baruch WiFi on iPhone"
-          />
-        </div>
-        <div class="printing-step-title-large">
-          Connect to <strong>Baruch WiFi</strong>
-        </div>
-        <div class="printing-step-sub-large">
-          Make sure you’re on campus WiFi.
-        </div>
-      </div>
-
-      <div class="printing-step-large">
-        <div class="printing-step-number">2</div>
-        <div class="printing-step-image-large">
-          <img
-            src="${iosStep2}"
-            alt="Share and Print from iPhone"
-          />
-        </div>
-        <div class="printing-step-title-large">
-          Open file → <strong>Share</strong> → <strong>Print</strong>
-        </div>
-        <div class="printing-step-sub-large">
-          Pick the photo/document, then choose Print.
-        </div>
-      </div>
-
-      <div class="printing-step-large">
-        <div class="printing-step-number">3</div>
-        <div class="printing-step-image-large">
-          <img
-            src="${iosStep3}"
-            alt="Choose Baruch printer on iPhone"
-          />
-        </div>
-        <div class="printing-step-title-large">
-          Choose a <strong>Baruch printer</strong>
-        </div>
-        <div class="printing-step-sub-large">
-          Select NVC 2FL / 3FL B&amp;W or NVC Color, then tap Print.
-        </div>
-      </div>
-
-      <div class="printing-step-large">
-        <div class="printing-step-number">4</div>
-        <div class="printing-step-image-large">
-          <img
-            src="${iosStep4}"
-            alt="Release print job at station"
-          />
-        </div>
-        <div class="printing-step-title-large">
-          Release at the <strong>print station</strong>
-        </div>
-        <div class="printing-step-sub-large">
-          Log in at the release station and tap Release.
-        </div>
-      </div>
-
-      <div class="printing-extra">
-       
-      </div>
-    </div>
-  `,
-
-  android: `
-    <div class="printing-guide">
-      <h2>Wireless Printing – Android Phone</h2>
-
-      <p class="printing-intro">
-        Follow these pictures to print from Android.
-      </p>
-
-      <div class="printing-step-large">
-        <div class="printing-step-number">1</div>
-        <div class="printing-step-image-large">
-          <img
-            src="${androidStep1}"
-            alt="Connect to Baruch WiFi on Android"
-          />
-        </div>
-        <div class="printing-step-title-large">
-          Connect to <strong>Baruch WiFi</strong>
-        </div>
-        <div class="printing-step-sub-large">
-          Make sure your phone is on the campus WiFi.
-        </div>
-        <div class="printing-step-sub-large">
-          Make sure mobile print is "On".Then select "Mobile Print" to view the printer available.
-        </div>
-      </div>
-
-      <div class="printing-step-large">
-        <div class="printing-step-number">2</div>
-        <div class="printing-step-image-large">
-          <img
-            src="${androidStep2}"
-            alt="open microsoft word or similar application from Android"
-          />
-        </div>
-        <div class="printing-step-title-large">
-          Open "Microsoft Word".
-        </div>
-        <div class="printing-step-sub-large">
-          Or any similar applications.
-        </div>
-      </div>
-
-      <div class="printing-step-large">
-        <div class="printing-step-number">3</div>
-        <div class="printing-step-image-large">
-          <img
-            src="${androidStep3}"
-            alt="select print on MicroSoft Word"
-          />
-        </div>
-        <div class="printing-step-title-large">
-          Just open up the app and select <strong>"Print"</strong> from
-          the menu after retrieving your document.
-        </div>
-        <div class="printing-step-sub-large">
-          
-        </div>
-      </div>
-
-      <div class="printing-step-large">
-        <div class="printing-step-number">4</div>
-        <div class="printing-step-image-large">
-          <img
-            src="${androidStep4}"
-            alt="select printers"
-          />
-        </div>
-        <div class="printing-step-title-large">
-          Select the down arrow to choose your printer
-        </div>
-        <div class="printing-step-sub-large">
-          You can select <strong>"BaruchBW" </strong> or <strong>"BaruchColor"</strong>.
-        </div>
-      </div>
-      <div class="printing-step-large">
-        <div class="printing-step-number">4</div>
-        <div class="printing-step-image-large">
-          <img
-            src="${androidStep5}"
-            alt="select paper size"
-          />
-        </div>
-        <div class="printing-step-title-large">
-          Select the down arrow to choose your Paper size.
-        </div>
-        <div class="printing-step-sub-large">
-          Also make sure that paper size selected is <strong>"Letter Size"</strong>.
-        </div>
-      </div>
-      <div class="printing-step-large">
-        <div class="printing-step-number">4</div>
-        <div class="printing-step-image-large">
-          <img
-            src="${androidStep6}"
-            alt="Release print job at station"
-          />
-        </div>
-        <div class="printing-step-title-large">
-          Release at the <strong>print station</strong>
-        </div>
-        <div class="printing-step-sub-large">
-          Log in at the release station and release your job.
-        </div>
-      </div>
-
-      <div class="printing-extra">
-        
-      </div>
-    </div>
-  `,
+  android: [
+    {
+      id: 1,
+      phase: "Install app",
+      device: "phone",
+      image:
+        "https://bctc.baruch.cuny.edu/wp-content/uploads/sites/26/2021/04/mobile_print1.jpg",
+      title: "Install “PaperCut”",
+      instruction: "Open Google Play Store → Install the PaperCut app.",
+    },
+    {
+      id: 2,
+      phase: "Connect to WiFi",
+      device: "phone",
+      image:
+        "https://bctc.baruch.cuny.edu/wp-content/uploads/sites/26/2021/04/mobile_print2.jpg",
+      title: "Join “Baruch” WiFi",
+      instruction: "Go to Settings → Wi-Fi → Select “Baruch”.",
+    },
+    {
+      id: 3,
+      phase: "Set up PaperCut",
+      device: "phone",
+      image:
+        "https://bctc.baruch.cuny.edu/wp-content/uploads/sites/26/2021/04/mobile_print3.jpg",
+      title: "Open PaperCut settings",
+      instruction:
+        "Open the PaperCut app → Tap Menu → Select “Android Settings”.",
+    },
+    {
+      id: 4,
+      phase: "Enable printing",
+      device: "phone",
+      image:
+        "https://bctc.baruch.cuny.edu/wp-content/uploads/sites/26/2021/04/mobile_print4.jpg",
+      title: "Turn on Mobile Print",
+      instruction: "Make sure “Mobile Print” is switched ON.",
+    },
+    {
+      id: 5,
+      phase: "Choose printer",
+      device: "phone",
+      image:
+        "https://bctc.baruch.cuny.edu/wp-content/uploads/sites/26/2021/04/mobile_print5.jpg",
+      title: "Select a Baruch printer",
+      instruction: "Choose BaruchBW or BaruchColor from the printer list.",
+    },
+    {
+      id: 6,
+      phase: "Print from your app",
+      device: "phone",
+      image:
+        "https://bctc.baruch.cuny.edu/wp-content/uploads/sites/26/2021/04/mobile_print7.jpg",
+      title: "Tap Print",
+      instruction: "Open your file in any app → Tap Menu → Select Print.",
+    },
+    {
+      id: 7,
+      phase: "Release job",
+      device: "kiosk",
+      image:
+        "https://bctc.baruch.cuny.edu/wp-content/uploads/sites/26/2021/04/mobile_print11.jpg",
+      title: "Release your print",
+      instruction:
+        "Go to a print station → Log in with Baruch credentials → Select your job → Tap Release.",
+    },
+  ],
 };

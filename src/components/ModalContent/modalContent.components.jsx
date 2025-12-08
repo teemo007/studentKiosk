@@ -2,12 +2,10 @@ import "./modalContent.components.css";
 import "../../baruchStyle/baruchlibstyles.scss";
 import { useEffect, useRef, useState } from "react";
 import parse from "html-react-parser";
-// import { setUp } from "../../data/wifiSetUp";
 import goUp from "../../assets/images/go-up.svg";
-// import { printingSetUp } from "../../data/printingSetUp";
 import StepWizard from "../stepWizard/stepWizard.components";
-import { wifiSteps } from "../../data/wifiSetUp2";
-import { printingSteps } from "../../data/printingSet2";
+import { wifiSteps } from "../../data/wifiSetUp";
+import { printingSteps } from "../../data/printingSetUp";
 import { mfaSteps } from "../../data/mfaSetUp";
 
 // Regex for external wifi content links (open in a new window)
@@ -228,26 +226,6 @@ const ModalContent = ({
       generalContent = renderDefaultContent();
     }
 
-    // switch (true) {
-    //   case key.includes("wifi-walkthrough-for-chrome-users"):
-    //     generalContent = parse(setUp.chrome);
-    //     topRef.current?.scrollIntoView({ behavior: "smooth" });
-    //     break;
-    //   case key.includes("wifi-walkthrough-for-windows-users"):
-    //     generalContent = parse(setUp.windows);
-    //     topRef.current?.scrollIntoView({ behavior: "smooth" });
-    //     break;
-    //   case key.includes("wifi-walkthrough-for-iphone-users"):
-    //     generalContent = parse(setUp.iphone);
-    //     topRef.current?.scrollIntoView({ behavior: "smooth" });
-    //     break;
-    //   case key.includes("wifi-walkthrough-for-android-users"):
-    //     generalContent = parse(setUp.android);
-    //     topRef.current?.scrollIntoView({ behavior: "smooth" });
-    //     break;
-    //   default:
-    //     generalContent = renderDefaultContent();
-    // }
   } else if (content.id === 3) {
     // ---- Wireless Printing walkthroughs ----
     let pKey = null;
@@ -287,13 +265,7 @@ const ModalContent = ({
     } else {
       generalContent = renderDefaultContent();
     }
-    // switch (true) {
-    //   case key.includes("mfa_first_time"):
-    //     generalContent = parse(mfaSetup.firsttime);
-    //     break;
-    //   default:
-    //     generalContent = renderDefaultContent();
-    // }
+
   } else {
     generalContent = renderDefaultContent();
   }

@@ -5,7 +5,7 @@ import { DisplayContext } from "../../context/DisplayContext";
 import { logEvent } from "../../services/loggings";
 
 const StepWizard = ({ steps, topicId, onDone }) => {
-  const { currentFlow } = useContext(DisplayContext);
+  const { currentFlow, currentSessionId } = useContext(DisplayContext);
   const [index, setIndex] = useState(0);
   const [hasCompleted, setHasCompleted] = useState(false);
 
@@ -25,15 +25,17 @@ const StepWizard = ({ steps, topicId, onDone }) => {
       flowKey: currentFlow,
       stepIndex: stepIndex + 1,
       stepId: steps[stepIndex].id,
+      sessionId: currentSessionId,
     });
   };
 
   const logFlowCompleted = () => {
     logEvent({
-      action: "flow_completed" || null,
+      action: "flow_completed",
       topicId,
       flowKey: currentFlow || null,
       totalSteps: steps.length,
+      sessionId: currentSessionId,
     });
   };
 
@@ -44,6 +46,7 @@ const StepWizard = ({ steps, topicId, onDone }) => {
       flowKey: currentFlow || null,
       stepIndex: fromIndex + 1,
       stepId: steps[fromIndex].id,
+      sessionId: currentSessionId,
     });
   };
 

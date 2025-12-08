@@ -1,16 +1,9 @@
 import { useEffect, useState } from "react";
 import { db } from "../../utils/firebase/firebase.utils";
 import { collection, getDocs } from "firebase/firestore";
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-} from "recharts";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 
-const StepDropoffChart = ({ topicId, flowKey, title }) => {
+const StepDropoffChart = ({ topicId, flowKey }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -24,19 +17,34 @@ const StepDropoffChart = ({ topicId, flowKey, title }) => {
           (ev) =>
             Number(ev.topicId) === Number(topicId) &&
             ev.flowKey === flowKey &&
-            ev.action === "step_completed"
+            ev.action === "step_completed" &&
+            ev.stepIndex != null
         );
 
-        const counts = {};
-        for (const ev of stepEvents) {
-          const idx = ev.stepIndex ?? 0;
-          if (!counts[idx]) counts[idx] = 0;
-          counts[idx] += 1;
+        if (!stepEvents.length) {
+          setData([]);
+          setLoading(false);
+          return;
         }
 
-        const sortedIndices = Object.keys(counts)
-          .map(Number)
-          .sort((a, b) => a - b);
+        const sessionMap = new Map(); // sessionId -> Set(stepIndex)
+
+        for (const ev of stepEvents) {
+          const sessionId = ev.sessionId || ev.flowSessionId || ev.id;
+          if (!sessionId) continue;
+
+          const stepIdx = Number(ev.stepIndex) || 0;
+          if (!sessionMap.has(sessionId)) {
+            sessionMap.set(sessionId, new Set());
+          }
+          sessionMap.get(sessionId).add(stepIdx);
+        }
+
+        const allStepsSet = new Set();
+        for (const steps of sessionMap.values()) {
+          for (const s of steps) allStepsSet.add(s);
+        }
+        const sortedIndices = Array.from(allStepsSet).sort((a, b) => a - b);
 
         if (!sortedIndices.length) {
           setData([]);
@@ -44,16 +52,37 @@ const StepDropoffChart = ({ topicId, flowKey, title }) => {
           return;
         }
 
-        const baseCount = counts[sortedIndices[0]];
+        const baseStep = sortedIndices.includes(1) ? 1 : sortedIndices[0];
+
+        const filteredSessions = Array.from(sessionMap.entries()).filter(
+          ([, stepsSet]) => stepsSet.has(baseStep)
+        );
+
+        if (!filteredSessions.length) {
+          setData([]);
+          setLoading(false);
+          return;
+        }
+
+        const stepCounts = {}; // stepIndex -> sessionCount
+
+        for (const [, stepsSet] of filteredSessions) {
+          for (const idx of stepsSet) {
+            stepCounts[idx] = (stepCounts[idx] || 0) + 1;
+          }
+        }
+
+        const baseCount = stepCounts[baseStep] || 0;
 
         const chartData = sortedIndices.map((idx) => {
-          const completedCount = counts[idx];
+          const sessionCount = stepCounts[idx] || 0;
           const retention =
-            baseCount > 0 ? (completedCount / baseCount) * 100 : 0;
+            baseCount > 0 ? (sessionCount / baseCount) * 100 : 0;
+
           return {
             stepIndex: idx,
             label: `Step ${idx}`,
-            completedCount,
+            sessions: sessionCount,
             retention,
           };
         });
@@ -75,42 +104,41 @@ const StepDropoffChart = ({ topicId, flowKey, title }) => {
 
   if (!data.length) {
     return (
-      <div style={{ color: "#9ca3af" }}>
-        No step data yet for this flow.
-      </div>
+      <div style={{ color: "#9ca3af" }}>No step data yet for this flow.</div>
     );
   }
 
-  const chartWidth = Math.max(480, data.length * 80);
+  // const chartWidth = Math.max(480, data.length * 80);
 
   return (
     <div style={{ width: "100%", marginTop: "0.75rem", overflowX: "auto" }}>
-      {title && (
-        <h3 style={{ margin: 0, marginBottom: "0.5rem" }}>{title}</h3>
-      )}
-
-      <BarChart
-        width={chartWidth}
-        height={260}
-        data={data}
-        margin={{ top: 16, right: 16, left: 0, bottom: 40 }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="label" />
-        <YAxis unit="%" domain={[0, 100]} />
-        <Tooltip
-          formatter={(value, name) => {
-            if (name === "retention") {
-              return [`${Number(value).toFixed(1)}%`, "Retention"];
-            }
-            if (name === "completedCount") {
-              return [value, "Completed"];
-            }
-            return [value, name];
-          }}
-        />
-        <Bar dataKey="retention" name="Retention %" fill="#0065A4" radius={[6, 6, 0, 0]}/>
-      </BarChart>
+      <ResponsiveContainer width="100%" height={260}>
+        <BarChart
+          data={data}
+          margin={{ top: 16, right: 24, left: 0, bottom: 40 }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="label" />
+          <YAxis unit="%" domain={[0, 100]} />
+          <Tooltip
+            formatter={(value, name) => {
+              if (name === "retention") {
+                return [`${Number(value).toFixed(1)}%`, "Retention"];
+              }
+              if (name === "sessions") {
+                return [value, "Sessions"];
+              }
+              return [value, name];
+            }}
+          />
+          <Bar
+            dataKey="retention"
+            name="Retention %"
+            fill="#0065A4"
+            radius={[6, 6, 0, 0]}
+          />
+        </BarChart>
+      </ResponsiveContainer>
     </div>
   );
 };
