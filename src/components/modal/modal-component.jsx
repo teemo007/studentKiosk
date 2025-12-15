@@ -9,8 +9,14 @@ import { logEvent } from "../../services/loggings";
 import { FLOW_CONFIG } from "../../config/flowConfig";
 
 const Modal = ({ content }) => {
-  const { setIsOpen, currentFlow, setCurrentFlow, currentSessionId,setCurrentSessionId } =
-    useContext(DisplayContext);
+  const {
+    setIsOpen,
+    setCurrentTopic,
+    currentFlow,
+    setCurrentFlow,
+    currentSessionId,
+    setCurrentSessionId,
+  } = useContext(DisplayContext);
 
   const [openedWindows, setOpenedWindows] = useState([]);
   const [links, setLinks] = useState("");
@@ -66,8 +72,11 @@ const Modal = ({ content }) => {
       return updated;
     });
 
+    setCurrentTopic(null);
     setCurrentFlow(null);
     setCurrentSessionId(null);
+    setLinks("");
+    setlabIds("");
     setConfirmExit(false);
     setShowSupportMessage(false);
     closeAllWindows();
