@@ -1,4 +1,4 @@
-# Student Onboarding Kiosk – Code Structure
+# Student Onboarding Kiosk – Source Code Overview
 
 ## 1. Project Overview
 
@@ -43,7 +43,7 @@ analytics for evaluation.
 
 Includes: - Overall solve rate - Average completion time - Step drop-off
 charts (WiFi Android / iOS / Printing / MFA) - Student Account stats -
-Per-topic overview\
+Per-topic overview
 - Follows Nielsen's Heuristic Evaluation principles
 
 ---
@@ -52,7 +52,7 @@ Per-topic overview\
 
 ### **Prerequisites**
 
--   Node.js ≥ 18\
+-   Node.js ≥ 18
 -   Yarn package manager
 
 ### **Install Dependencies**
@@ -129,6 +129,7 @@ Controls: - currentTopic
 - modal open/close
 - step index
 - inactivity timeout
+The context ensures that each user interaction is treated as a separate session by resetting topic, flow, and session state when the modal is closed.
 
 ------------------------------------------------------------------------
 ##  Workflow System (Step Wizard)
@@ -191,13 +192,7 @@ This project applies:
 -   Steering Law
 
 ------------------------------------------------------------------------
-## Build for Production
 
-``` bash
-yarn build
-```
-
-------------------------------------------------------------------------
 
 ## Author
 
